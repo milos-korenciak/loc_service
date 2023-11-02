@@ -40,11 +40,16 @@ async def index_html():
 
 @app.get("/VIP/{point_in_time}")
 async def read_item(point_in_time: int):
+    """ Serve coordinates
+    NOTE: We can fail here, if we are not in given time.
+    Let's use Error 500, as this IS Server internal troubles here."""
+    latitude = 0.
+    longitude = 0.
 
-
-    return {"item_id": point_in_time}
+    return {"source": "vip-db", "gpsCoords": {"lat": latitude, "long": longitude}}
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app", port=8088, log_level="debug", reload=True, host="0.0.0.0", timeout_keep_alive=4)
+    # temporary override to 8888 - browser
+    uvicorn.run("app:app", port=8888, log_level="debug", reload=True, host="0.0.0.0", timeout_keep_alive=4)
