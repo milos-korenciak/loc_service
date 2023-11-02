@@ -1,10 +1,10 @@
 #!/bin/env bash
-python -m uvicorn loc_service.app:app --host 0.0.0.0  --port 8088 --timeout-keep-alive 4 --workers 2 --reload
+python -m uvicorn loc_service.app:app --host 0.0.0.0 --port 8088 --loop asyncio --timeout-keep-alive 4 --workers 2 --reload
 
 # NOTE:
 # APP loc_service.app:app
 # --timeout-keep-alive 4 is the time limit
-
+# --loop [auto|asyncio|uvloop]  # we want asyncio as we use it!
 
 # We do not want currently in dev:
 
