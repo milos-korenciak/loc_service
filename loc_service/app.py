@@ -1,5 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
+import datetime
+
 
 # Constants
 app = FastAPI()
@@ -26,6 +28,13 @@ INDEX_HTML = """
 @app.get("/")
 def index_html():
     return INDEX_HTML
+
+
+@app.get("/v1/now")
+def index_html():
+    """Returns {"now": "ISO8601 now format"}
+    NOTE: DEPENDS ON system clock PROPER config + proper NTP config & runtime!"""
+    return {"now": datetime.datetime.utcnow().replace(tzinfo=datetime.UTC).isoformat()}
 
 
 @app.get("/items/{item_id}")
