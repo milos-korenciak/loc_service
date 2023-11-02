@@ -1,32 +1,31 @@
 from typing import Union
+import fastapi
 from fastapi import FastAPI
 import datetime
 
 
 # Constants
 app = FastAPI()
-INDEX_HTML = """
-<!DOCTYPE html>
+INDEX_HTML = """<!DOCTYPE html>
 <html>
 <head>
   <title>My Simple HTML Page</title>
 </head>
 <body>
   <h1>This is a simple HTML page!</h1>
-  <a href="./v1/now">This exports the current SQLite DB as csv.</a>
-  <a href="./v1/VIP/">This exports the current SQLite DB as csv.</a>
-  <a href="./v1/coords/2">This exports the current SQLite DB as csv.</a>
+  <p><a href="./v1/now">Now endpoint as csv.</a></p>
+  <p><a href="./v1/VIP/1">Coordinates of VIP in given time</a></p>
   <p>This form overwrites data in the current SQLite DB.</p>
   <form action="/load-data" method="POST" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="submit" value="Upload">
   </form>
   </body>
-</html>
-"""
+</html>"""
 
-@app.get("/")
-def index_html():
+
+@app.get("/", response_class=fastapi.responses.HTMLResponse)
+async def index_html():
     return INDEX_HTML
 
 
