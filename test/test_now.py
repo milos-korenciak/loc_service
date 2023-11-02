@@ -11,7 +11,7 @@ L.setLevel(0)
 
 
 class TestCaseNowEndpoint(unittest.TestCase):
-    def test_server_runnig(self):
+    def test_server_running(self):
         """Test if now endpoint is running on localhost:8088/v1/now correctly"""
         response = requests.get(URL)
         self.assertEqual(200, response.status_code, "The server is not running correctly!")  # add assertion here
