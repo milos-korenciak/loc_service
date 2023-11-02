@@ -30,15 +30,19 @@ async def index_html():
 
 
 @app.get("/v1/now")
-def index_html():
+async def index_html():
     """Returns {"now": "ISO8601 now format"}
-    NOTE: DEPENDS ON system clock PROPER config + proper NTP config & runtime!"""
+    NOTE: DEPENDS ON system clock PROPER config + proper NTP config & runtime!
+    Note for interview: Let's use what we do have yet. Standard Py libs are
+    enough now. JEE way - use the standard. (Must be supported /w no cost!)"""
     return {"now": datetime.datetime.utcnow().replace(tzinfo=datetime.UTC).isoformat()}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/VIP/{point_in_time}")
+async def read_item(point_in_time: int):
+
+
+    return {"item_id": point_in_time}
 
 
 if __name__ == "__main__":
