@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+uwsgi
+jupyter
+notebook
+requests
+
+
+# once we move everything into setup.cfg / pyproject.toml
+
+# Requirements along https://www.python.org/dev/peps/pep-0508/
+#.  # read requirements from setup.py !
+# https://stackoverflow.com/questions/14399534/reference-requirements-txt-for-the-install-requires-kwarg-in-setuptools-setup-py
+# no empty newline here, please
